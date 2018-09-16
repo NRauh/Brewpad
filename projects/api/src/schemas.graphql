@@ -1,0 +1,23 @@
+type Recipe {
+  _id: String
+  title: String
+  description: String
+  projectedABV: Float
+  yields: String
+}
+
+input RecipeInput {
+  title: String!
+  description: String
+  projectedABV: Float
+  yields: String
+}
+
+type Query {
+  recipes: [Recipe]
+  recipe(id: Int!): Recipe
+}
+
+type Mutation {
+  addRecipe(recipe: RecipeInput!): Recipe
+}

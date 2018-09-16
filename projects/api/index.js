@@ -1,35 +1,11 @@
 const { ApolloServer, gql } = require('apollo-server');
+const fs = require('fs');
+const path = require('path');
 const mongoose = require('mongoose');
 const { Recipes } = require('./models');
 
 mongoose.connect('mongodb://localhost/brewpad');
 const db = mongoose.connection;
-
-const typeDefs = gql`
-  type Recipe {
-    _id: String
-    title: String
-    description: String
-    projectedABV: Float
-    yields: String
-  }
-
-  input RecipeInput {
-    title: String!
-    description: String
-    projectedABV: Float
-    yields: String
-  }
-
-  type Query {
-    recipes: [Recipe]
-    recipe(id: Int!): Recipe
-  }
-
-  type Mutation {
-    addRecipe(recipe: RecipeInput!): Recipe
-  }
-`;
 
 const resolvers = {
   Query: {
@@ -51,6 +27,8 @@ const resolvers = {
     },
   },
 };
+
+const typeDefs = fs.readFileSync(path.join(__dirname, '/src/schemas.graphql'), 'utf8');
 
 const server = new ApolloServer({
   typeDefs,
