@@ -1,18 +1,13 @@
 const { ApolloServer, gql } = require('apollo-server');
+const mongoose = require('mongoose');
+const { Recipes } = require('./models');
 
-const recipes = [
-  {
-    id: 0,
-    title: 'Test Recipe',
-    description: 'A nice test beer',
-    projectedABV: 4.2,
-    yields: '5 gallons'
-  }
-];
+mongoose.connect('mongodb://localhost/brewpad');
+const db = mongoose.connection;
 
 const typeDefs = gql`
   type Recipe {
-    id: Int
+    _id: String
     title: String
     description: String
     projectedABV: Float
@@ -38,19 +33,23 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    recipes: () => recipes,
+    recipes: async () => {
+      const recipes = await Recipes.find();
+
+      return prepped;
+    },
     recipe: (parent, args) => recipes[args.id]
   },
   Mutation: {
     addRecipe(parent, { recipe }) {
-      const savedRecipe = {
-        ...recipe,
-        id: recipes.length,
-      };
-      recipes.push(savedRecipe);
+      const savedRecipe = new Recipes(recipe);
+      savedRecipe._id = savedRecipe._id.toString();
+
+      savedRecipe.save();
+
       return savedRecipe;
-    }
-  }
+    },
+  },
 };
 
 const server = new ApolloServer({
@@ -58,6 +57,14 @@ const server = new ApolloServer({
   resolvers,
 });
 
-server.listen().then(({ url }) => {
-  console.log(`Server listening at: ${url}`);
+db.on('error', () => {
+  console.error('Failed to connect to db');
+});
+
+db.once('open', () => {
+  console.log('connected to db');
+
+  server.listen().then(({ url }) => {
+    console.log(`Server listening at: ${url}`);
+  });
 });
