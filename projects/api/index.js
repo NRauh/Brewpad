@@ -19,9 +19,20 @@ const typeDefs = gql`
     yields: String
   }
 
+  input RecipeInput {
+    title: String!
+    description: String
+    projectedABV: Float
+    yields: String
+  }
+
   type Query {
     recipes: [Recipe]
     recipe(id: Int!): Recipe
+  }
+
+  type Mutation {
+    addRecipe(recipe: RecipeInput!): Recipe
   }
 `;
 
@@ -30,6 +41,16 @@ const resolvers = {
     recipes: () => recipes,
     recipe: (parent, args) => recipes[args.id]
   },
+  Mutation: {
+    addRecipe(parent, { recipe }) {
+      const savedRecipe = {
+        ...recipe,
+        id: recipes.length,
+      };
+      recipes.push(savedRecipe);
+      return savedRecipe;
+    }
+  }
 };
 
 const server = new ApolloServer({
