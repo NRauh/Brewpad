@@ -2,7 +2,7 @@ const { ApolloServer, gql } = require('apollo-server');
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
-const { Recipes } = require('./models');
+const { Recipes } = require('./src/models');
 
 mongoose.connect('mongodb://localhost/brewpad');
 const db = mongoose.connection;
@@ -12,7 +12,7 @@ const resolvers = {
     recipes: async () => {
       const recipes = await Recipes.find();
 
-      return prepped;
+      return recipes;
     },
     recipe: (parent, args) => recipes[args.id]
   },
