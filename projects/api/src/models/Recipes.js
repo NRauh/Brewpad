@@ -10,6 +10,7 @@ const RecipeSchema = new mongoose.Schema({
   projectedABV: Number,
   yields: String,
   description: String,
+  style: [String],
   ingredients: [IngredientSchema],
 });
 
