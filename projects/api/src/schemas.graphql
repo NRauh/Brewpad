@@ -9,7 +9,7 @@ input IngredientInput {
 }
 
 type Recipe {
-  _id: String
+  id: ID
   title: String
   description: String
   style: [String]

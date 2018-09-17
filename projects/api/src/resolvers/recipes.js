@@ -4,6 +4,7 @@ module.exports = {
   Query: {
     async recipes() {
       const recipes = await Recipes.find();
+
       return recipes;
     },
 
