@@ -1,4 +1,5 @@
 const recipes = require('./recipes');
+const brews = require('./brews');
 
 module.exports = {
   Query: {
@@ -6,5 +7,6 @@ module.exports = {
   },
   Mutation: {
     ...recipes.Mutation,
+    ...brews.Mutation,
   },
 };

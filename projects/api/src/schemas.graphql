@@ -29,6 +29,45 @@ input RecipeInput {
   directions: [String]
 }
 
+type Gravity {
+  date: String
+  gravity: Float
+}
+
+input GravityInput {
+  date: String
+  gravity: Float
+}
+
+type Temperature {
+  date: String
+  temperature: String
+}
+
+input TemperatureInput {
+  date: String
+  temperature: String
+}
+
+type Brew {
+  id: ID
+  gravityReadings: [Gravity]
+  temperatureReadings: [Temperature]
+  bottleDate: String
+  consumeDate: String
+  notes: String
+  rating: Float
+}
+
+input BrewInput {
+  gravityReadings: [GravityInput]
+  temperatureReadings: [TemperatureInput]
+  bottleDate: String
+  consumeDate: String
+  notes: String
+  rating: Float
+}
+
 type Query {
   recipes: [Recipe]
   recipe(id: Int!): Recipe
@@ -36,4 +75,6 @@ type Query {
 
 type Mutation {
   addRecipe(recipe: RecipeInput!): Recipe
+  addBrew(fromRecipe: ID!, brewDetails: BrewInput!): Brew
+  # tweakRecipe(forBrew: ID!, recipe: RecipeInput): Recipe
 }
