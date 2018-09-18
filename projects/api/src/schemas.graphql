@@ -70,7 +70,9 @@ input BrewInput {
 
 type Query {
   recipes: [Recipe]
-  recipe(id: Int!): Recipe
+  recipe(id: ID!): Recipe
+  brews: [Brew]
+  brew(id: ID!): Brew
 }
 
 type Mutation {

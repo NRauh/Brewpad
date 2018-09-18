@@ -4,6 +4,7 @@ const brews = require('./brews');
 module.exports = {
   Query: {
     ...recipes.Query,
+    ...brews.Query,
   },
   Mutation: {
     ...recipes.Mutation,
