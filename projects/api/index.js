@@ -7,7 +7,10 @@ const resolvers = require('./src/resolvers');
 mongoose.connect('mongodb://localhost/brewpad');
 const db = mongoose.connection;
 
-const typeDefs = fs.readFileSync(path.join(__dirname, '/src/schemas.graphql'), 'utf8');
+const typeDefs = fs.readFileSync(
+  path.join(__dirname, '/src/schemas.graphql'),
+  'utf8',
+);
 
 const server = new ApolloServer({
   typeDefs,
