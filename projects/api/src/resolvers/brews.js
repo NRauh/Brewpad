@@ -3,11 +3,11 @@ const { Recipes, Brews } = require('../models');
 module.exports = {
   Query: {
     async brews() {
-      return await Brews.find();
+      return Brews.find();
     },
 
     async brew(parent, { id }) {
-      return await Brews.findById(id);
+      return Brews.findById(id);
     },
   },
   Mutation: {
@@ -22,6 +22,6 @@ module.exports = {
       await newBrew.save();
 
       return newBrew;
-    }
-  }
-}
+    },
+  },
+};

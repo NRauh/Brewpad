@@ -4,4 +4,4 @@ const { Brews } = require('./Brews');
 module.exports = {
   Recipes,
   Brews,
-}
+};

@@ -12,7 +12,7 @@ const RecipeSchema = new mongoose.Schema({
   description: String,
   style: [String],
   ingredients: [IngredientSchema],
-  directions: [String]
+  directions: [String],
 });
 
 const Recipes = mongoose.model('Recipes', RecipeSchema);
@@ -20,4 +20,4 @@ const Recipes = mongoose.model('Recipes', RecipeSchema);
 module.exports = {
   RecipeSchema,
   Recipes,
-}
+};

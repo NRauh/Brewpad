@@ -1,8 +1,8 @@
 const { ApolloServer } = require('apollo-server');
-const resolvers = require('./src/resolvers');
 const fs = require('fs');
 const path = require('path');
 const mongoose = require('mongoose');
+const resolvers = require('./src/resolvers');
 
 mongoose.connect('mongodb://localhost/brewpad');
 const db = mongoose.connection;

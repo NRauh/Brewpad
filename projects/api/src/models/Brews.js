@@ -25,4 +25,4 @@ const Brews = mongoose.model('Brews', BrewsSchema);
 
 module.exports = {
   Brews,
-}
+};
