@@ -1,6 +1,6 @@
 <template>
   <div class="page-container">
-    <md-app md-waterfall md-mode="fixed-last">
+    <md-app style="min-height: 100vh;" md-waterfall md-mode="fixed-last">
       <md-app-toolbar class="md-large md-dense md-primary">
         <div class="md-toolbar-row">
           <div class="md-toolbar-section-start">
@@ -29,10 +29,4 @@
       </md-app-content>
     </md-app>
   </div>
-  <!-- <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-    </div>
-  </div> -->
-
 </template>
