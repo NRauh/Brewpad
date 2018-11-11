@@ -10,6 +10,16 @@
         <md-card-header>
           <div class="md-title">{{recipe.title}}</div>
         </md-card-header>
+
+        <md-card-content>
+          {{recipe.description}}
+        </md-card-content>
+
+        <md-card-actions>
+          <md-button :to="{ name: 'recipe', params: { recipeId: recipe.id }}">
+            Info
+          </md-button>
+        </md-card-actions>
       </md-card>
     </div>
 
@@ -30,6 +40,7 @@ export default {
         recipes {
           id
           title
+          description
         }
       }
     `,
